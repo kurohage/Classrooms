@@ -6,11 +6,11 @@ class ClassroomForm(forms.ModelForm):
     class Meta:
         model = Classroom
         fields = '__all__'
-        #exclude = ['teacher',]
+        exclude = ['teacher',]
 
-        widgets = {
-        	'teacher': forms.TextInput(attrs={'readonly':'readonly'}),
-        }
+        #widgets = {
+        #	'year': forms.DateInput(attrs={'format':'%Y'}),
+        #}
 
 class StudentForm(forms.ModelForm):
     class Meta:

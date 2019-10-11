@@ -5,6 +5,12 @@
 	<form action="{% url 'classroom-create' %}" method="POST" enctype="multipart/form-data">
 		{% csrf_token %}
 		{{form|crispy}}
+		<h6>Teacher to be Assigned: 
+			{{ request.user.username }}
+			{% if request.user.first_name and request.user.last_name %}
+				&nbsp;&nbsp;&nbsp;({{ request.user.first_name }} {{ request.user.last_name }})
+			{% endif %}
+		</h6><br>
 		<input type="submit" value="Create" class="btn" style="background-color: #e3f2fd; color: black;">
 	</form>
 {% endblock content %}
