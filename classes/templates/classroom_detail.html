@@ -6,10 +6,36 @@
     Classroom Details
   </div>
   <div class="card-body">
-    <h5 class="card-title" style="color: 000034;">{{classroom.name}} {{classroom.subject}}</h5>
-    <p class="card-text" style="color: 000034;">{{classroom.year}}</p>
-    <a href="{% url 'classroom-update' classroom.id %}" class="btn" style="background-color: #000034; color: white;">Update</a>
-    <a href="{% url 'classroom-delete' classroom.id %}" class="btn" style="background-color: #FFA500; color: #000034;">Delete</a>
+    <h5 class="card-title" style="color: 000034;">Class name:{{classroom.name}}<br>Description: {{classroom.subject}}</h5>
+    <p class="card-text" style="color: 000034;">Classroom year: {{classroom.year}}</p>
+    {% if request.user == classroom.teacher %}
+    	<a href="{% url 'classroom-update' classroom.id %}" class="btn" style="background-color: #000034; color: white;">Update Classroom</a>
+    	<a href="{% url 'classroom-delete' classroom.id %}" class="btn" style="background-color: #FFA500; color: #000034;">Delete Classroom</a>
+    	<a href="{% url 'student-create' classroom.id %}" class="btn" style="background-color: #FFA500; color: #000034;">Add Student</a>
+    {% endif %}
+  </div>
+  <div class="card-body text-left">
+    <ul class="list-group">
+      <li class="list-group-item active">Student List</li>
+
+    {% for student in students %}
+      <span class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">{{ student.name }}</h5>
+          <small class="badge badge-primary badge-pill">
+          	Grade: {{ student.exam_grade }}/100
+          </small>
+        </div>
+        <p class="mb-1">Date of Birth: {{ student.date_of_birth }}</p>
+        <p class="mb-1">Gender: {{ student.gender }}</p>
+        {% if request.user == classroom.teacher %}
+        	<a href="{% url 'student-update' classroom.id student.id %}" class="btn btn-dark">Update</a>
+      		<a href="{% url 'student-delete' classroom.id student.id %}" class="btn btn-danger">Delete</a>
+        {% endif %}
+      </span>
+    {% endfor %}
+
+    </ul>
   </div>
 </div>
 
