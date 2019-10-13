@@ -20,7 +20,7 @@ class Student(models.Model):
 	# gender choices: first field is the DB data, and the 2nd is the form display
 	gender = models.CharField(choices=(("Male","Male"), ("Female","Female")), max_length=6)
 	exam_grade = models.FloatField()
-	classroom = models.ForeignKey(Classroom, on_delete=models.DO_NOTHING)
+	classroom = models.ForeignKey(Classroom, on_delete=models.CASCADE) # delete students when the class is deleted
 
 	#def get_absolute_url(self):
 		#return reverse('student:detail', kwargs={'student_id': self.id})
