@@ -125,6 +125,8 @@ def student_create(request, classroom_id):
 
             messages.success(request, "Student successfully created!")
             return redirect('classroom-detail', classroom_id)
+            # or you can send the args using kwargs as a dictionary -- the order of variables doesn't matter
+            # return redirect('classroom-detail', kwargs={"classroom_id": classroom_id})
         print (form.errors)
     context = {
         "form": form,
