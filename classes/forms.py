@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class ClassroomForm(forms.ModelForm):
     class Meta:
         model = Classroom
-        fields = '__all__'
+        #fields = '__all__' # mutually exclusive with exclude. No need to define it when exclude is used.
         exclude = ['teacher',]
 
         #widgets = {
