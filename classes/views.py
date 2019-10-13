@@ -91,7 +91,7 @@ def signin(request):
         form = SigninForm(request.POST)
         if form.is_valid():
 
-            username = form.cleaned_data['username']
+            username = form.cleaned_data.get('username') # cleaner and better failure handling than cleaned_data['username']
             password = form.cleaned_data['password']
 
             auth_user = authenticate(username=username, password=password)
